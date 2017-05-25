@@ -1,15 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    // {
+    //   path: '/'
+    //   // redirect: '/login'
+    // },
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      component: resolve => require(['../page/Home'], resolve),
+      children: [
+        {
+          path: '/',
+          component: resolve => require(['../page/Home'], resolve)
+        },
+        {
+          path: '/table',
+          component: resolve => require(['../page/table'], resolve)
+        }
+      ]
     }
   ]
 })
